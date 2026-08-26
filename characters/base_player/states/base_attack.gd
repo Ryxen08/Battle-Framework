@@ -315,7 +315,7 @@ func _check_for_errors():
 func _step():
 	if root.is_in_group("characters"):
 		if (get_current_phase().land_on_touched_ground or land_on_touched_ground) and root.is_on_floor():
-			parent.change_state("Land", {landing_frames = max(get_current_phase().landing_frames, landing_lag)})
+			#parent.change_state("Land", {landing_frames = max(get_current_phase().landing_frames, landing_lag)})
 			return
 		
 		# Charging
@@ -370,7 +370,7 @@ func _step():
 		_phase_timer = max(0, _phase_timer - 1)
 		if _phase_timer == 0:
 			if get_current_phase().end_phase:
-				parent.change_state(next_state, next_state_data)
+				#parent.change_state(next_state, next_state_data)
 				return
 			next_phase()
 	

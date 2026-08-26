@@ -7,35 +7,35 @@
 [sub_resource type="Animation" id="Animation_gjl0y"]
 resource_name = "Flip1"
 length = 0.35
-step = 0.35
+step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraRoot/Pivot:rotation")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
+"times": PackedFloat32Array(0, 0.33333334),
 "transitions": PackedFloat32Array(0.7, 3.2),
 "update": 0,
-"values": [Vector3(-0.610865, 0, 0), Vector3(-0.610865, 3.14159, 0)]
+"values": [Vector3(-0.61086524, 0, 0), Vector3(-0.61086524, 3.1415927, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_d5x7l"]
 resource_name = "Flip2"
 length = 0.35
-step = 0.35
+step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraRoot/Pivot:rotation")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(0.732043, 3.24549),
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(0.73204, 3.24),
 "update": 0,
-"values": [Vector3(-0.610865, 3.14159, 0), Vector3(-0.610865, 0, 0)]
+"values": [Vector3(-0.61086524, 3.1415927, 0), Vector3(-0.61086524, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vnv7o"]
@@ -43,7 +43,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraRoot/Pivot:rotation")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -84,5 +84,4 @@ script = ExtResource("3_l44vk")
 metadata/_custom_type_script = "uid://bmsefbkmwyqoo"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot" unique_id=1144989273]
-root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_rtcij")

@@ -94,6 +94,7 @@ func _ready() -> void:
 		Globals.CLIENTSIDE_PLAYER = self
 	team_id = player_id
 	_load_stats()
+	@warning_ignore("narrowing_conversion")
 	current_hp = max_hp
 	# TO-DO there should be 
 	current_stocks = 3
@@ -453,8 +454,8 @@ func direction_string_to_vector2(direction_string: String) -> Vector2:
 	if direction_string == "down":
 		vec = Vector2.DOWN
 	return vec.rotated(camera.rotation.y)
-	assert(false, "Invalid direction")
-	return Vector2.ZERO
+	#assert(false, "Invalid direction")
+	#return Vector2.ZERO
 
 
 ## Updates the 2d direction to match the 3D direction
@@ -621,6 +622,7 @@ func _on_hitbox_hit(hit_data: HitData, opponent_hurtbox: Hurtbox) -> void:
 
 
 ## When the player hits a guarding opponent, go to the "Blocked" state to stagger back
+@warning_ignore("shadowed_variable")
 func _on_hitbox_blocked(hit_data: HitData, hurtbox: Hurtbox) -> void:
 	state_machine.change_state("Blocked", {hit_data = hit_data})
 	play_sound_effect("blocked")

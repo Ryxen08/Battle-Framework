@@ -25,11 +25,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_left"):
-		selected_mode -= 1
+		selected_mode = selected_mode-1 as MODE
 		arrow_animation(arrow_left)
 		mode_change_sound.play()
 	if Input.is_action_just_pressed("ui_right"):
-		selected_mode += 1
+		selected_mode = selected_mode+1 as MODE
 		arrow_animation(arrow_right)
 		mode_change_sound.play()
 		
@@ -48,9 +48,9 @@ func change_mode(p_mode):
 	var previous_sprite: Sprite2D = current_sprite
 	selected_mode = p_mode
 	if selected_mode < 0:
-		selected_mode = MODE.size() - 1
+		selected_mode = MODE.size() - 1 as MODE
 	if selected_mode >= MODE.size():
-		selected_mode = 0
+		selected_mode = 0 as MODE
 	current_sprite = mode_sprites.get_child(selected_mode)
 	if previous_sprite:
 		var fade_out: Tween = get_tree().create_tween()

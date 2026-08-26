@@ -1,7 +1,7 @@
 extends Node
 
 
-func play_sound_effect(name: String, stream: AudioStream, bus: String, position: Vector3 = Vector3.INF, volume_db: float = 0.0, stop_same_name: bool = true) -> void:
+func play_sound_effect(sound_name: String, stream: AudioStream, bus: String, position: Vector3 = Vector3.INF, volume_db: float = 0.0, stop_same_name: bool = true) -> void:
 	var audio_stream_player
 
 	# If position is specified, use AudioStreamPlayer 3D, otherwise use normal AudioStreamPlayer
@@ -12,9 +12,9 @@ func play_sound_effect(name: String, stream: AudioStream, bus: String, position:
 		audio_stream_player = AudioStreamPlayer.new()
 
 	# Stop and restart sound effect if its already playing
-	if get_tree().current_scene.has_node(name) and stop_same_name:
-		get_tree().current_scene.get_node(name).stop()
-		get_tree().current_scene.get_node(name).play()
+	if get_tree().current_scene.has_node(sound_name) and stop_same_name:
+		get_tree().current_scene.get_node(sound_name).stop()
+		get_tree().current_scene.get_node(sound_name).play()
 		return
 
 	audio_stream_player.name = name

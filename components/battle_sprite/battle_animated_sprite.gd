@@ -6,8 +6,8 @@ class_name BattleAnimatedSprite3D
 @export var flipped: bool = false : set = set_flipped
 @export var default_cull_layer: int = 7
 @export var flipped_cull_layer: int = 8
+@export var z_offset: float = 0.5
 var flipped_sprite: AnimatedSprite3D
-
 
 # Create child flipped_sprite, which is a copy of the current sprite
 func _ready():
@@ -26,8 +26,6 @@ func _ready():
 		animation_changed.connect(_on_animation_changed)
 		frame_changed.connect(_on_frame_changed)
 	set_flipped(flipped)
-	
-
 
 func set_flipped(p_flipped: bool):
 	flipped = p_flipped
@@ -35,12 +33,9 @@ func set_flipped(p_flipped: bool):
 	if flipped_sprite:
 		flipped_sprite.flip_h = !flipped
 
-
 func _on_animation_changed():
 	if flipped_sprite:
 		flipped_sprite.animation = animation
-	
-
 
 func _on_frame_changed() -> void:
 	if flipped_sprite:

@@ -2,33 +2,11 @@
 
 [ext_resource type="Script" uid="uid://mhfes0qawdck" path="res://characters/base_player/base_player.gd" id="1_7xl6k"]
 [ext_resource type="Script" uid="uid://cyjpv2h7kqytk" path="res://components/battle_sprite/battle_sprite.gd" id="2_b01px"]
-[ext_resource type="Script" uid="uid://c8deswq6muu7v" path="res://characters/raycast.gd" id="2_s2flu"]
+[ext_resource type="Script" uid="uid://c8deswq6muu7v" path="res://characters/shadow_raycast.gd" id="2_s2flu"]
 [ext_resource type="Script" uid="uid://ddgg8e7k4c0pd" path="res://characters/base_player/effects.gd" id="2_uam5m"]
-[ext_resource type="Script" uid="uid://clqptntgy8bjs" path="res://components/state_machine/state_machine.gd" id="4_dnwcv"]
-[ext_resource type="Script" uid="uid://cmwhkop71rjln" path="res://characters/base_player/states/idle.gd" id="5_6wnxk"]
-[ext_resource type="Script" uid="uid://bynwafnian3gd" path="res://characters/base_player/states/move.gd" id="7_wtpgs"]
-[ext_resource type="Script" uid="uid://b2w6u7ric008q" path="res://characters/base_player/states/jump.gd" id="8_pfkrf"]
-[ext_resource type="Script" uid="uid://crmqwts1iv3q2" path="res://characters/base_player/states/fall.gd" id="9_qxn4b"]
-[ext_resource type="Script" uid="uid://c7nuqqol5tgcy" path="res://characters/base_player/states/dash.gd" id="10_0nphp"]
-[ext_resource type="Script" uid="uid://v5wimxpa0mk2" path="res://characters/base_player/states/stopping.gd" id="10_fv82v"]
-[ext_resource type="Script" uid="uid://da5fijxp5ctbo" path="res://characters/base_player/states/jump_squat.gd" id="11_m6gva"]
-[ext_resource type="Script" uid="uid://dqjgj02s6chjb" path="res://characters/base_player/states/turn.gd" id="11_uaf3e"]
-[ext_resource type="Script" uid="uid://rfqmahy2yll6" path="res://characters/base_player/states/land.gd" id="12_tg5qw"]
 [ext_resource type="Script" uid="uid://cm6korv2sfd" path="res://components/hitbox/hitbox.gd" id="15_0nphp"]
-[ext_resource type="Script" uid="uid://dlb6dqmr8fknv" path="res://characters/base_player/states/hurt.gd" id="15_ddqn7"]
 [ext_resource type="Script" uid="uid://csae2nyvo6aiw" path="res://components/hitbox/hit_data.gd" id="16_32b4s"]
-[ext_resource type="Script" uid="uid://33bi3xdwsci3" path="res://characters/base_player/states/blocked.gd" id="16_kvwve"]
 [ext_resource type="Script" uid="uid://jk40g84p8nlf" path="res://components/hurtbox/hurtbox.gd" id="16_obb2v"]
-[ext_resource type="Script" uid="uid://cbsbumpo5naru" path="res://characters/base_player/states/heal.gd" id="17_b01px"]
-[ext_resource type="Script" uid="uid://cftg53g7j8had" path="res://characters/base_player/states/base_attack.gd" id="17_r8feo"]
-[ext_resource type="Script" uid="uid://b1u20jy6k4m5j" path="res://characters/base_player/states/floor_bounce.gd" id="19_uam5m"]
-[ext_resource type="Script" uid="uid://cyfsv02j71h0f" path="res://characters/base_player/states/wall_tech.gd" id="20_wyd30"]
-[ext_resource type="Script" uid="uid://bormpit51yu27" path="res://characters/base_player/states/wall_hit.gd" id="21_do57j"]
-[ext_resource type="Script" uid="uid://dvkf7fsxfklpo" path="res://characters/base_player/states/guard.gd" id="21_kvwve"]
-[ext_resource type="Script" uid="uid://blv27bp3h8srh" path="res://characters/base_player/states/down.gd" id="22_h6gly"]
-[ext_resource type="Script" uid="uid://duajolpu2bnpj" path="res://characters/base_player/states/homing_dash.gd" id="22_ppowo"]
-[ext_resource type="Script" uid="uid://nb4qdf27p1ly" path="res://characters/base_player/states/respawn.gd" id="23_uam5m"]
-[ext_resource type="Script" uid="uid://dh4ds3c8sc514" path="res://characters/base_player/states/get_up.gd" id="23_uxs3k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ajxej"]
 radius = 0.0853482
@@ -94,122 +72,6 @@ script = ExtResource("2_s2flu")
 [node name="Shadow" type="MeshInstance3D" parent="ShadowRayCast" unique_id=153048874]
 material_override = SubResource("StandardMaterial3D_ppowo")
 mesh = SubResource("CylinderMesh_ddqn7")
-
-[node name="StateMachine" type="Node" parent="." unique_id=806784247 groups=["network_sync"]]
-script = ExtResource("4_dnwcv")
-root_node_path = NodePath("..")
-
-[node name="Idle" type="Node" parent="StateMachine" unique_id=806791865]
-script = ExtResource("5_6wnxk")
-metadata/_custom_type_script = "uid://d01c6yqqbrjws"
-
-[node name="Move" type="Node" parent="StateMachine" unique_id=1068073136]
-script = ExtResource("7_wtpgs")
-
-[node name="Stopping" type="Node" parent="StateMachine" unique_id=570810351]
-script = ExtResource("10_fv82v")
-
-[node name="Turn" type="Node" parent="StateMachine" unique_id=1077866430]
-script = ExtResource("11_uaf3e")
-
-[node name="JumpSquat" type="Node" parent="StateMachine" unique_id=933421113]
-script = ExtResource("11_m6gva")
-
-[node name="Land" type="Node" parent="StateMachine" unique_id=679596714]
-script = ExtResource("12_tg5qw")
-
-[node name="Dash" type="Node" parent="StateMachine" unique_id=500218446]
-script = ExtResource("10_0nphp")
-
-[node name="AirAction" type="Node" parent="StateMachine" unique_id=1637163508]
-
-[node name="Jump" type="Node" parent="StateMachine" unique_id=885854164]
-script = ExtResource("8_pfkrf")
-
-[node name="Fall" type="Node" parent="StateMachine" unique_id=620186488]
-script = ExtResource("9_qxn4b")
-
-[node name="Guard" type="Node" parent="StateMachine" unique_id=689990020]
-script = ExtResource("21_kvwve")
-
-[node name="Heal" type="Node" parent="StateMachine" unique_id=1796077676]
-script = ExtResource("17_b01px")
-
-[node name="Blocked" type="Node" parent="StateMachine" unique_id=60283041]
-script = ExtResource("16_kvwve")
-
-[node name="Hurt" type="Node" parent="StateMachine" unique_id=1899117156]
-script = ExtResource("15_ddqn7")
-
-[node name="WallBounce" type="Node" parent="StateMachine" unique_id=283577264]
-script = ExtResource("21_do57j")
-
-[node name="WallTech" type="Node" parent="StateMachine" unique_id=1070908555]
-script = ExtResource("20_wyd30")
-
-[node name="FloorBounce" type="Node" parent="StateMachine" unique_id=1756920426]
-script = ExtResource("19_uam5m")
-
-[node name="Down" type="Node" parent="StateMachine" unique_id=2082457418]
-script = ExtResource("22_h6gly")
-
-[node name="GetUp" type="Node" parent="StateMachine" unique_id=604207920]
-script = ExtResource("23_uxs3k")
-
-[node name="Jab1" type="Node" parent="StateMachine" unique_id=523789546]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="Jab2" type="Node" parent="StateMachine" unique_id=981136779]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="Jab3" type="Node" parent="StateMachine" unique_id=1484192293]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="Heavy" type="Node" parent="StateMachine" unique_id=1197192703]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="Upper" type="Node" parent="StateMachine" unique_id=1007129074]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="DashAttack" type="Node" parent="StateMachine" unique_id=2079405750]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="AirAttack" type="Node" parent="StateMachine" unique_id=686574562]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="AimAttack" type="Node" parent="StateMachine" unique_id=241173427]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="GrndShot" type="Node" parent="StateMachine" unique_id=1543150220]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="AirShot" type="Node" parent="StateMachine" unique_id=722076224]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="GrndPow" type="Node" parent="StateMachine" unique_id=1655889037]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="AirPow" type="Node" parent="StateMachine" unique_id=1461058612]
-script = ExtResource("17_r8feo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="HomingDash" type="Node" parent="StateMachine" unique_id=613146347]
-script = ExtResource("22_ppowo")
-metadata/_custom_type_script = "uid://cftg53g7j8had"
-
-[node name="Respawn" type="Node" parent="StateMachine" unique_id=1314830839]
-script = ExtResource("23_uam5m")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=223441001]
 script = ExtResource("15_0nphp")

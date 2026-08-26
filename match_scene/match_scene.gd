@@ -8,11 +8,11 @@ const PAUSE_MENU = preload("uid://cifkfj62fb1ho")
 
 
 @export var test_characters: Array[String] = ["sonic", "tails"]
-@export var test_stage: String # TO-DO, not in use yet
+@export var test_stage: String # TODO, not in use yet
 
 var stage: Level
 var camera_pivots: Dictionary[int, Node3D]
-var cameras: Dictionary[int, Camera3D]
+var cameras: Dictionary[int, BattleCamera]
 var original_content_scale_size: Vector2i
 
 
@@ -85,18 +85,18 @@ func initialize_match():
 	assert(stage.player_spawn_4, "No spawn position has been placed for player 4")
 	for i in range(MatchSetup.get_total_players()):
 		var character = MatchSetup.character_choices[i + 1]
-		var player: BattleCharacter = ResourceLoader.load("res://characters/%s/%s.tscn" % [character, character]).instantiate()
+		var player: PlayerBrain = ResourceLoader.load("res://scenes/objects/players/player_%s.tscn" % character).instantiate()
 		# Get the player_spawn_<x> variable, which holds a node reference to the spawn position
 		var spawn_position: Node3D = stage.get("player_spawn_%s" % str(i + 1))
-		player.global_position = spawn_position.global_position
-		player.camera = camera_pivots[i]
-		player.scale = Vector3(4, 4, 4)
+		spawn_position.get_parent().add_child(player)
+		player.cam_pivot = camera_pivots[i]
+		player.cam = cameras[i]
 		player.player_id = i + 1
 		cameras[i].player_id_to_track = i + 1
 		player.name = str(player.player_id)
 		player.char_name = character
 		player.kod.connect(_on_player_kod)
-		spawn_position.get_parent().add_child(player)
+		player.global_position = spawn_position.global_position
 
 		# Spawn HUD
 		var player_hud = PLAYER_HUD.instantiate()
@@ -184,20 +184,20 @@ func _physics_process(delta: float) -> void:
 func _get_alive_player_count():
 	var count: int = 0
 	for player in get_tree().get_nodes_in_group("characters"):
-		if player is BattleCharacter:
-			if player.current_stocks > 0:
+		if player is PlayerBrain:
+			if player.points > 0:
 				count += 1
 	return count
 
 
-func _on_player_kod(player: BattleCharacter):
+func _on_player_kod(player: PlayerBrain):
 	# Your placement depends on how many players were alive when you got KO'd
 	Game.match_results[player.player_id] = _get_alive_player_count() + 1
 	if _get_alive_player_count() <= 1:
 		# Add the winner player
 		for remaining_player in get_tree().get_nodes_in_group("characters"):
-			if remaining_player is BattleCharacter:
-				if remaining_player.current_stocks > 0:
+			if remaining_player is PlayerBrain:
+				if remaining_player.points > 0:
 					Game.match_results[remaining_player.player_id] = 1
 		_go_to_results_screen()
 

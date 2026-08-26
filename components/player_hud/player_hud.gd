@@ -6,12 +6,12 @@ extends CanvasLayer
 @onready var pause_menu: Control = $Pause
 @onready var player_id_label: Label = $PlayerIDLabel
 
-var player_tracking: BattleCharacter
+var player_tracking: PlayerBrain
 
 
-func track_player(player: BattleCharacter):
+func track_player(player: PlayerBrain):
 	icon.texture = load(GameData.get_character_info(player.char_name).life_icon_path)
-	lifebar.max_value = player.max_hp
+	lifebar.max_value = player.data.combat_max_hp
 	player_tracking = player
 	pause_menu.player_id = player.player_id
 	player_id_label.text = "P" + str(player.player_id)
@@ -19,5 +19,5 @@ func track_player(player: BattleCharacter):
 
 func _process(delta):
 	if player_tracking:
-		lifebar.value = player_tracking.current_hp
-	stock_label.text = str(player_tracking.current_stocks)
+		lifebar.value = player_tracking.health
+	#stock_label.text = str(player_tracking.current_stocks)

@@ -16,9 +16,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var cpu_players: int = cpu_spin_box.value
-	var human_players: int = human_spin_box.value
-	var total_players: int = cpu_players + human_players
+	var cpu_players: float = cpu_spin_box.value
+	var human_players: float = human_spin_box.value
+	var total_players: float = cpu_players + human_players
 	ok_label.visible = total_players >= 2
 	#ok_button.visible = total_players >= 2
 	#cpu_spin_box.visible = human_players == 1
@@ -39,8 +39,8 @@ func _on_cpu_spin_box_value_changed(value: float) -> void:
 
 func _on_ok_button_pressed() -> void:
 	SceneChanger.change_scene_to_file("res://menus/character_select/character_select.tscn")
-	var cpu_players: int = cpu_spin_box.value
-	var human_players: int = human_spin_box.value
+	var cpu_players: float = cpu_spin_box.value
+	var human_players: float = human_spin_box.value
 	MatchSetup.cpu_players = cpu_players
 	MatchSetup.human_players = human_players
 

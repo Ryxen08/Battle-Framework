@@ -1,0 +1,191 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dmu4k5t8fwr7e"]
+
+[ext_resource type="Resource" uid="uid://dxav51m4c70rm" path="res://scripts/players/sonic/actions/Attacks/Aerial/Action/sonic_atk_ara.tres" id="1_axevl"]
+[ext_resource type="Resource" uid="uid://clyg6ufag41t0" path="res://scripts/players/sonic/actions/Attacks/Aerial/Dunk/sonic_atk_dnk.tres" id="2_f2sr7"]
+[ext_resource type="Resource" uid="uid://ni8gybfqfhg" path="res://scripts/players/sonic/actions/Attacks/Aerial/Forward/sonic_atk_arf.tres" id="3_f5we4"]
+[ext_resource type="Resource" uid="uid://dej2nuabweu2s" path="res://scripts/players/sonic/actions/Attacks/Aerial/Neutral/sonic_atk_arn.tres" id="4_pbq7b"]
+[ext_resource type="Resource" uid="uid://ttystmtwxmr8" path="res://scripts/players/sonic/actions/Attacks/Aerial/Upper/sonic_atk_aru.tres" id="5_grkqm"]
+[ext_resource type="Script" uid="uid://pxe37qvh2lfk" path="res://scripts/collision/grabbox/grabbox_data.gd" id="6_krti5"]
+[ext_resource type="Script" uid="uid://df4sy4b83fepm" path="res://scripts/collision/guardbox/guardbox_data.gd" id="7_vypi6"]
+[ext_resource type="Script" uid="uid://duq5jnfskpxxr" path="res://scripts/collision/hitbox/hitbox_group.gd" id="8_wwy2g"]
+[ext_resource type="Script" uid="uid://c25cesi6ntj0q" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="9_3a8mk"]
+[ext_resource type="Script" uid="uid://dyu7wu5soyw2b" path="res://scripts/players/player_action.gd" id="10_37su5"]
+[ext_resource type="Resource" uid="uid://81cwjnlwwc2j" path="res://scripts/players/sonic/actions/Attacks/Dash/Neutral/sonic_atk_dsn.tres" id="11_vyfdm"]
+[ext_resource type="Resource" uid="uid://berq7x6vdfrv2" path="res://scripts/players/sonic/actions/Attacks/Ground/Forward/Hold/sonic_atk_fwh.tres" id="12_chyy3"]
+[ext_resource type="Resource" uid="uid://ofpwtx1uxhji" path="res://scripts/players/sonic/actions/Attacks/Ground/Forward/Tap/sonic_atk_fwt.tres" id="13_u45sp"]
+[ext_resource type="Resource" uid="uid://dnasv2cqd7m52" path="res://scripts/players/sonic/actions/Attacks/Ground/Light/Lt1/sonic_atk_lt1.tres" id="14_nnpfr"]
+[ext_resource type="Resource" uid="uid://djmolv47r81lg" path="res://scripts/players/sonic/actions/Attacks/Ground/Light/Lt2/sonic_atk_lt2.tres" id="15_ndemg"]
+[ext_resource type="Resource" uid="uid://b04exoqyktpxw" path="res://scripts/players/sonic/actions/Attacks/Ground/Light/Lt3/sonic_atk_lt3.tres" id="16_lxa0u"]
+[ext_resource type="Resource" uid="uid://dixpjkhvfir45" path="res://scripts/players/sonic/actions/Attacks/Ground/Upper/Hold/sonic_atk_uph.tres" id="17_24asy"]
+[ext_resource type="Resource" uid="uid://voogehhkpo0f" path="res://scripts/players/sonic/actions/Attacks/Ground/Upper/Tap/sonic_atk_upt.tres" id="18_ehtwe"]
+[ext_resource type="Resource" uid="uid://0382vx6yolot" path="res://scripts/players/sonic/actions/Movement/Defense/Guard/sonic_grd.tres" id="19_ool3m"]
+[ext_resource type="Resource" uid="uid://cdb0g4kua5pvx" path="res://scripts/players/sonic/actions/Movement/Dodge/Air/sonic_dge_air.tres" id="20_eknn3"]
+[ext_resource type="Resource" uid="uid://b6wsy5gibm7hw" path="res://scripts/players/sonic/actions/Movement/Dodge/Ground/sonic_dge_gnd.tres" id="21_ljclq"]
+[ext_resource type="Resource" uid="uid://cjcfnmwe03kem" path="res://scripts/players/sonic/actions/Movement/Mobility/AirAct/sonic_air.tres" id="22_bf6cd"]
+[ext_resource type="Resource" uid="uid://m8p43e2w6l5j" path="res://scripts/players/sonic/actions/Movement/Mobility/Dash/sonic_dsh.tres" id="23_xdml8"]
+[ext_resource type="Resource" uid="uid://dqw56dcfrby8d" path="res://scripts/players/sonic/actions/Specials/Aerial/Power/Forward/sonic_pwr_arf.tres" id="24_wyixd"]
+[ext_resource type="Resource" uid="uid://dsp1j4shqeh5e" path="res://scripts/players/sonic/actions/Specials/Aerial/Power/Neutral/sonic_pwr_arn.tres" id="25_bkrcx"]
+[ext_resource type="Resource" uid="uid://b04xdb3gj2xs8" path="res://scripts/players/sonic/actions/Specials/Aerial/Power/Upper/sonic_pwr_aru.tres" id="26_m1h8c"]
+[ext_resource type="Resource" uid="uid://bbd88ejnlstyn" path="res://scripts/players/sonic/actions/Specials/Ground/Power/Forward/sonic_pwr_fwd.tres" id="27_jrb47"]
+[ext_resource type="Resource" uid="uid://c1ehahe61t6ic" path="res://scripts/players/sonic/actions/Specials/Ground/Power/Neutral/sonic_pwr_ntl.tres" id="28_lunen"]
+[ext_resource type="Resource" uid="uid://d2u3eow36qjgx" path="res://scripts/players/sonic/actions/Specials/Ground/Power/Upper/sonic_pwr_upr.tres" id="29_021gn"]
+[ext_resource type="Script" uid="uid://mxvay6maqmbf" path="res://scripts/players/player_data.gd" id="30_oa6xk"]
+[ext_resource type="Resource" uid="uid://t1q4x8n3dvcw" path="res://scripts/players/sonic/actions/Specials/Ground/Shot/Forward/sonic_sht_fwd.tres" id="31_3o7r5"]
+[ext_resource type="Resource" uid="uid://bdntfbmmppadh" path="res://scripts/players/sonic/actions/Specials/Ground/Shot/Neutral/sonic_sht_ntl.tres" id="32_e5em6"]
+[ext_resource type="Resource" uid="uid://budhgwlrogmp2" path="res://scripts/players/sonic/actions/Specials/Ground/Shot/Upper/sonic_sht_upr.tres" id="33_cknux"]
+
+[sub_resource type="Resource" id="Resource_6wjkx"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_illta"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c41x5"]
+radius = 0.28
+height = 1.64
+
+[sub_resource type="Resource" id="Resource_1hhyf"]
+script = ExtResource("9_3a8mk")
+defense = 100.0
+weight = 100.0
+hurtbox_mode = 0
+shape = SubResource("CapsuleShape3D_c41x5")
+position = Vector3(0, 0.82, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://c25cesi6ntj0q"
+
+[sub_resource type="Resource" id="Resource_5kw7e"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_75u1f"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_b4abx"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_xngi4"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_3kyru"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_dwip6"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_28pyt"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_ox3ud"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_pwabu"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_ds0no"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_6vklw"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_cdc81"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_fkplm"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_nc2v5"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_lo3rv"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[sub_resource type="Resource" id="Resource_gr137"]
+script = ExtResource("10_37su5")
+metadata/_custom_type_script = "uid://dyu7wu5soyw2b"
+
+[resource]
+resource_name = "SonicData"
+script = ExtResource("30_oa6xk")
+display_name = "Sonic"
+portrait_path = "uid://doi3o74wjlh3u"
+life_icon_path = "uid://b4e72gl5uqhpv"
+walk_startup_frames = 2.0
+walk_start_acceleration = 2.0
+walk_start_speed = 6.0
+land_deceleration = 1.0
+air_speed = 6.0
+jump_short_height = 1.0
+jump_short_frames_to_peak = 15.0
+jump_full_height = 3.0
+jump_full_frames_to_peak = 20.0
+fall_frames_to_descent = 20.0
+fall_fast_frames_to_descent = 10.0
+combat_hurtbox = SubResource("Resource_1hhyf")
+mov_mob_dsh = ExtResource("23_xdml8")
+mov_mob_air = ExtResource("22_bf6cd")
+mov_def_grd = ExtResource("19_ool3m")
+mov_dge_gnd = ExtResource("21_ljclq")
+mov_dge_air = ExtResource("20_eknn3")
+atk_lt1 = ExtResource("14_nnpfr")
+atk_lt2 = ExtResource("15_ndemg")
+atk_lt3 = ExtResource("16_lxa0u")
+atk_fwd_tap = ExtResource("13_u45sp")
+atk_fwd_hld = ExtResource("12_chyy3")
+atk_upr_tap = ExtResource("18_ehtwe")
+atk_upr_hld = ExtResource("17_24asy")
+atk_dsh_ntl = ExtResource("11_vyfdm")
+atk_dsh_fwd = SubResource("Resource_6wjkx")
+atk_dsh_upr = SubResource("Resource_illta")
+atk_air_ntl = ExtResource("4_pbq7b")
+atk_air_fwd = ExtResource("3_f5we4")
+atk_air_upr = ExtResource("5_grkqm")
+atk_air_act = ExtResource("1_axevl")
+atk_air_dnk = ExtResource("2_f2sr7")
+sht_gnd_ntl = ExtResource("32_e5em6")
+sht_gnd_fwd = ExtResource("31_3o7r5")
+sht_gnd_upr = ExtResource("33_cknux")
+pwr_gnd_ntl = ExtResource("28_lunen")
+pwr_gnd_fwd = ExtResource("27_jrb47")
+pwr_gnd_upr = ExtResource("29_021gn")
+sht_air_ntl = SubResource("Resource_dwip6")
+sht_air_fwd = SubResource("Resource_3kyru")
+sht_air_upr = SubResource("Resource_28pyt")
+pwr_air_ntl = ExtResource("25_bkrcx")
+pwr_air_fwd = ExtResource("24_wyixd")
+pwr_air_upr = ExtResource("26_m1h8c")
+trp_air_ntl = SubResource("Resource_nc2v5")
+trp_air_fwd = SubResource("Resource_fkplm")
+trp_air_upr = SubResource("Resource_lo3rv")
+sht_def = SubResource("Resource_ox3ud")
+pwr_def = SubResource("Resource_xngi4")
+trp_def = SubResource("Resource_gr137")
+grb_idl = SubResource("Resource_75u1f")
+grb_dsh = SubResource("Resource_5kw7e")
+grb_pvt = SubResource("Resource_b4abx")
+thw_fwd = SubResource("Resource_6vklw")
+thw_bak = SubResource("Resource_pwabu")
+thw_upr = SubResource("Resource_cdc81")
+thw_dwn = SubResource("Resource_ds0no")
+metadata/_custom_type_script = "uid://mxvay6maqmbf"

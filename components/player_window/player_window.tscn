@@ -5,5 +5,5 @@ oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(720, 480)
 content_scale_size = Vector2i(240, 160)
-content_scale_mode = 2
+content_scale_mode = 1
 content_scale_aspect = 1

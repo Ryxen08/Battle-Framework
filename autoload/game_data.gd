@@ -1,6 +1,6 @@
 extends Node
 
-var _character_info_dict: Dictionary[String, CharacterInfo]
+var _character_info_dict: Dictionary[String, PlayerData]
 
 var characters: Array[String] = [
 	"sonic", 
@@ -30,7 +30,7 @@ var modded_battle_stages: Array[String]
 func _init() -> void:
 	# Preload all CharacterInfo resources
 	for character in characters:
-		_character_info_dict[character] = load("res://characters/%s/%s.tres" % [character, character])
+		_character_info_dict[character] = load("res://scripts/players/%s/resources/%s_data.tres" % [character, character])
 
 
 func _ready() -> void:

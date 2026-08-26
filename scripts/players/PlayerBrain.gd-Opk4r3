@@ -1,0 +1,112 @@
+class_name PlayerBrain extends CharacterBody3D
+
+
+@onready var cam: Camera3D = %Cam3D
+@onready var cam_pivot: Node3D = %CamPivot
+@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
+
+@export var data: PlayerData
+
+const JUMP_BUFFER_FRAMES: float = 4.0
+const ATTACK_BUFFER_FRAMES: float = 10.0
+const STOP_THRESHOLD: float = 1.0
+const DEADZONE: float = 0.2
+const LANDING_LAG: float = 18.0
+const LAND_LERP_AMOUNT: float = 0.25
+
+enum AttackInput{
+	NEUTRAL = 0,
+	UPPER = 1,
+	HEAVY = 2,
+}
+
+var is_turning: bool = false
+
+var frame: float = 0.0
+var facing_dir: float = -PI
+var jump_buffer: float = 0.0
+var attack_dir_buffer: float = 0.0
+
+var move_input_raw: Vector2 = Vector2.ZERO
+var attack_input: Vector2 = Vector2.ZERO
+
+var move_input: Vector3 = Vector3.ZERO
+
+func _ready() -> void:
+	data.update_values()
+
+func update_frames(delta: float) -> void:
+	frame += floorf(delta*60.0)
+	jump_buffer -= floorf(delta*60.0)
+	
+	move_input_raw = Input.get_vector(&"MoveLeft", &"MoveRight", &"MoveUp", &"MoveDown")
+	var forward: Vector3 = cam.global_basis.z
+	var right: Vector3 = cam.global_basis.x
+	move_input = (forward*move_input_raw.y)+(right*move_input_raw.x)
+	move_input.y = 0.0
+	move_input = move_input.normalized()
+	if move_input.length() > DEADZONE:
+		update_facing_dir(move_input)
+	
+	if Input.is_action_just_pressed(&"Jump"):
+		on_jump_press()
+	
+	#TODO - Move these to Sprite Class
+	update_sprite_flip(facing_dir)
+	update_sprite_scale()
+
+func reset_frames() -> void:
+	frame = 0.0
+
+func walk(dir: Vector3, speed: float, acceleration: float, deceleration: float, delta: float) -> void:
+	#TODO - Make deadzone variable
+	var target_speed: Vector3 = dir*speed
+	
+	var accel_rate: float = acceleration if target_speed.length() > DEADZONE else deceleration
+	
+	var speed_dif: Vector3 = target_speed-velocity
+	var movement: Vector3 = speed_dif*accel_rate
+	
+	velocity.x += movement.x*delta
+	velocity.z += movement.z*delta
+	if target_speed.length() <= DEADZONE && Vector2(velocity.x, velocity.z).length() <= STOP_THRESHOLD:
+		velocity.x = 0.0
+		velocity.z = 0.0
+
+func jump(force: float) -> void:
+	jump_buffer = 0.0
+	velocity.y = force
+
+func apply_gravity(gravity: float, gravity_scale: float, delta: float) -> void:
+	var max_fall_speed: float = data.max_fall_speed
+	if velocity.y < 0.0:
+		gravity_scale *= data.fall_gravity_mult
+	
+	velocity.y -= gravity*gravity_scale*delta
+	velocity.y = maxf(-max_fall_speed, velocity.y)
+
+func on_jump_press() -> void:
+	jump_buffer = JUMP_BUFFER_FRAMES
+
+func update_facing_dir(direction: Vector3) -> void:
+	var target_dir: float = Vector3.RIGHT.signed_angle_to(direction, Vector3.UP)
+	var facing_dir_x: float = cos(facing_dir)
+	var target_dir_x: float = cos(target_dir)
+	if absf(facing_dir_x) > 0.01 && absf(target_dir_x) > 0.01:
+		is_turning = signf(target_dir_x) == -signf(facing_dir_x)
+	else:
+		is_turning = false
+	facing_dir = target_dir
+	
+	
+func update_sprite_flip(dir: float) -> void:
+	var dir_x: float = cos(fposmod((cam.global_rotation.y - dir), 2*PI))
+	if absf(dir_x) > 0.01:
+		sprite.flip_h = dir_x < 0.0
+
+func update_sprite_scale(base_scale: float = 1.0) -> void:
+	var cos_angle: float = maxf(absf(cos(cam_pivot.global_rotation.x)), 0.01)
+	sprite.scale.y = base_scale/cos_angle
+
+func play_animation(anim_name: StringName) -> void:
+	sprite.play(anim_name)

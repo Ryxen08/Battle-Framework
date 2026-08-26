@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://7hti6ws4mkfo"]
+
+[ext_resource type="Script" uid="uid://2ahye04s3xxm" path="res://scripts/players/sonic/projectiles/Shots/Fwd/ProjSonicShtFwd.gd" id="1_ij5e8"]
+[ext_resource type="SpriteFrames" uid="uid://c5omuw3ktenh8" path="res://scripts/players/sonic/projectiles/Shots/Fwd/SonicShtHvyE.tres" id="2_evw0e"]
+[ext_resource type="SpriteFrames" uid="uid://c6lo1xcmbdbx" path="res://scripts/players/sonic/projectiles/Shots/Fwd/SonicShtHvyN.tres" id="2_iibmk"]
+[ext_resource type="Script" uid="uid://b7xsq71n57jvm" path="res://scripts/sprites/billboard_anim.gd" id="2_yfbb5"]
+[ext_resource type="SpriteFrames" uid="uid://bny0p2yum280j" path="res://scripts/players/sonic/projectiles/Shots/Fwd/SonicShtHvyS.tres" id="4_lc185"]
+[ext_resource type="Script" uid="uid://duq5jnfskpxxr" path="res://scripts/collision/hitbox/hitbox_group.gd" id="5_xwlj6"]
+[ext_resource type="Script" uid="uid://bj7yuguovfsh3" path="res://scripts/collision/hitbox/hitbox_data.gd" id="6_ct8jh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qigyj"]
+radius = 1.0
+
+[sub_resource type="Resource" id="Resource_u7vs5"]
+script = ExtResource("6_ct8jh")
+hit_damage = 30.0
+hit_angle = Vector2(0, 30)
+hit_knockback = 15.0
+hit_stun = 15.0
+hit_lag = 0.0
+shield_damage = 50.0
+shield_knockback = 10.0
+shield_stun = 40.0
+shield_lag = 15.0
+type_launch = 1
+type_hitbox = 0
+type_angle = 0
+shape = SubResource("SphereShape3D_qigyj")
+position = Vector3(0.5, 1, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 2
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="Resource" id="Resource_nwe50"]
+script = ExtResource("5_xwlj6")
+hitboxes = Array[ExtResource("6_ct8jh")]([SubResource("Resource_u7vs5")])
+metadata/_custom_type_script = "uid://duq5jnfskpxxr"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lc185"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="Animation" id="Animation_1equg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteAnchor/BillboardAnim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_iibmk"]
+resource_name = "default"
+length = 0.7000017031745985
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteAnchor/BillboardAnim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lc185"]
+_data = {
+&"RESET": SubResource("Animation_1equg"),
+&"default": SubResource("Animation_iibmk")
+}
+
+[node name="ProjSonicShtFwd" type="CharacterBody3D" unique_id=388856564]
+top_level = true
+collision_layer = 0
+script = ExtResource("1_ij5e8")
+north_frames = ExtResource("2_iibmk")
+east_frames = ExtResource("2_evw0e")
+south_frames = ExtResource("4_lc185")
+hitbox_groups = Dictionary[StringName, ExtResource("5_xwlj6")]({
+&"A": SubResource("Resource_nwe50")
+})
+metadata/_custom_type_script = "uid://djie1h78cl76r"
+
+[node name="Collbox" type="CollisionShape3D" parent="." unique_id=88613967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_lc185")
+
+[node name="CenterPoint" type="Marker3D" parent="." unique_id=2141122136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+
+[node name="SpriteAnchor" type="Marker3D" parent="." unique_id=1219877733]
+
+[node name="BillboardAnim" type="AnimatedSprite3D" parent="SpriteAnchor" unique_id=1474501533]
+centered = false
+offset = Vector2(-64, 0)
+pixel_size = 0.05
+billboard = 2
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("2_evw0e")
+script = ExtResource("2_yfbb5")
+metadata/_custom_type_script = "uid://b7xsq71n57jvm"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=579029249]
+libraries/ = SubResource("AnimationLibrary_lc185")
